@@ -1,0 +1,14 @@
+{
+  "resourceName": "s3",
+  "policyUUID": "cac895c3",
+  "bucketName": "tempstreams3",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}

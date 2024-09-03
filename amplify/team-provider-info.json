@@ -14,6 +14,9 @@
     "categories": {
       "auth": {
         "tempstreamc0ea9ab2": {}
+      },
+      "storage": {
+        "s3": {}
       }
     }
   }
