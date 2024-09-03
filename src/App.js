@@ -1,15 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    Title,
+    Tooltip,
+    Legend
+} from "chart.js";
+import { Bar } from "react-chartjs-2";
 
-function App() {
-    return (
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <h2>Hello React app with AWS</h2>
-            </header>
-        </div>
-    );
-}
-
-export default App;
+ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    Title,
+    Tooltip,
+    Legend
+);
