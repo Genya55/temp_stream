@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-tempstream-dev-93fe7-authRole",
+      "UnauthRoleArn": "arn:aws:iam::185308582104:role/amplify-tempstream-dev-93fe7-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::185308582104:role/amplify-tempstream-dev-93fe7-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-tempstream-dev-93fe7-deployment",
+      "UnauthRoleName": "amplify-tempstream-dev-93fe7-unauthRole",
+      "StackName": "amplify-tempstream-dev-93fe7",
+      "StackId": "arn:aws:cloudformation:us-east-1:185308582104:stack/amplify-tempstream-dev-93fe7/1a0456e0-69af-11ef-ba5e-0e2da9294735",
+      "AmplifyAppId": "d2nlhdaz3po337"
+    },
+    "categories": {
+      "auth": {
+        "tempstreamc0ea9ab2": {}
+      }
+    }
+  }
+}
