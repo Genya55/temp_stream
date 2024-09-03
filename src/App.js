@@ -1,13 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
+// App.js
+import React from 'react';
+import { Bar } from 'react-chartjs-2';
+import { chartData, chartOptions } from './chart';
 
 function App() {
     return (
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <h2>Hello React app with AWS</h2>
-            </header>
+        <div>
+            <h1>My Chart</h1>
+            <Bar data={chartData} options={chartOptions} />
         </div>
     );
 }
