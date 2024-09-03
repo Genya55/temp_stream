@@ -17,7 +17,7 @@ function App({ signOut, user }) {
                 <h2>Hello React with AWS</h2>
                 {user ? (
                     <>
-                        <h3>WelcomeÅF{user.username}</h3>
+                        <h3>Welcome.{user.username}</h3>
                         <button onClick={signOut}>Sign out</button>
                     </>
                 ) : (
