@@ -42,13 +42,19 @@ function App({ signOut, user }) {
     return (
         <div className="App">
             <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <h2>Hello React with AWS</h2>
+
                 {user ? (
                     <>
                         <h3>Welcome: {user.username}</h3>
                         <button onClick={signOut}>Sign out</button>
-                        <div>
+                        <div style={{
+                            height: '500px',
+                            width: '100%',
+                            margin: '0 auto',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center'
+                        }}>
                             <Bar data={graphData} />
                         </div>
                     </>
