@@ -1,46 +1,40 @@
-import React from "react";
-import { Line } from "react-chartjs-2";
+import { Bar } from 'react-chartjs-2';
 
-function App() {
-    const labels = ["1 月", "2 月", "3 月", "4 月", "5 月", "6 月"];
-    const graphData = {
-        labels: labels,
-        datasets: [
-            {
-                label: "A社",
-                data: [65, 59, 60, 81, 56, 55],
-                borderColor: "rgb(75, 192, 192)",
-            },
-            {
-                label: "B社",
-                data: [60, 55, 57, 61, 75, 50],
-                borderColor: "rgb(75, 100, 192)",
-            },
-        ],
-    };
+const data = {
+    // x 軸のラベル
+    labels: ['1 月', '2 月', '3 月', '4 月', '5 月', '6 月', '7 月'],
+    datasets: [
+        {
+            label: 'Dataset',
+            // データの値
+            data: [65, 59, 80, 81, 56, 55, 40],
+            // グラフの背景色
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 205, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(201, 203, 207, 0.2)',
+            ],
+            // グラフの枠線の色
+            borderColor: [
+                'rgb(255, 99, 132)',
+                'rgb(255, 159, 64)',
+                'rgb(255, 205, 86)',
+                'rgb(75, 192, 192)',
+                'rgb(54, 162, 235)',
+                'rgb(153, 102, 255)',
+                'rgb(201, 203, 207)',
+            ],
+            // グラフの枠線の太さ
+            borderWidth: 1,
+        },
+    ],
+};
 
-    const options: {} = {
-        maintainAspectRatio: false,
-    };
-
-    const divStyle: React.CSSProperties = {
-        marginLeft: "auto",
-        marginRight: "auto",
-        margin: "10px",
-        width: "500px",
-    };
-
-    return (
-        <div className="App" style={divStyle}>
-            <Line
-                height={300}
-                width={300}
-                data={graphData}
-                options={options}
-                id="chart-key"
-            />
-        </div>
-    );
+// レンダリング
+export default function Index(): JSX.Element {
+    return <Bar data={data} />;
 }
-
-export default App;
