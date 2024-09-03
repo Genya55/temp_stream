@@ -1,5 +1,6 @@
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
-import { Bar } from 'react-chartjs-2';
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, LineElement, PointElement, Title, Tooltip, Legend } from 'chart.js';
+
+import { Line } from 'react-chartjs-2';
 import './App.css';
 
 import logo from "./logo.svg";
@@ -11,7 +12,9 @@ import awsExports from "./aws_exports";
 Amplify.configure(awsExports);
 
 // Chart.jsにスケールやエレメントを登録する
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+
+ChartJS.register(CategoryScale, LinearScale, BarElement, LineElement, PointElement, Title, Tooltip, Legend);
+
 
 function App({ signOut, user }) {
     /** グラフデータ */
@@ -33,7 +36,9 @@ function App({ signOut, user }) {
         datasets: [
             {
                 data: [5.6, 7.2, 10.6, 13.6, 20, 21.8, 24.1, 28.4, 25.1, 19.4, 13.1, 8.5],
-                backgroundColor: 'rgba(30, 144, 255, 1)',
+                backgroundColor: 'rgba(30, 144, 255, 0.2)', // 塗りつぶしの色
+                borderColor: 'rgba(30, 144, 255, 1)', // 線の色
+                borderWidth: 2, // 線の太さ
                 label: '(mm)',
             },
         ],
@@ -48,14 +53,14 @@ function App({ signOut, user }) {
                         <h3>Welcome: {user.username}</h3>
                         <button onClick={signOut}>Sign out</button>
                         <div style={{
-                            height: '500px',
-                            width: '100%',
+                            height: '1000px',
+                            width: '80%',
                             margin: '0 auto',
                             display: 'flex',
                             justifyContent: 'center',
                             alignItems: 'center'
                         }}>
-                            <Bar data={graphData} />
+                            <Line data={graphData} />
                         </div>
                     </>
                 ) : (
