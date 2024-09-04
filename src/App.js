@@ -1,96 +1,60 @@
-import { Chart as ChartJS, CategoryScale, LinearScale, LineElement, PointElement, Title, Tooltip, Legend } from 'chart.js';
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, LineElement, PointElement, Title, Tooltip, Legend } from 'chart.js';
+
 import { Line } from 'react-chartjs-2';
 import './App.css';
 
-import { Amplify, Storage } from 'aws-amplify';
-import { withAuthenticator } from '@aws-amplify/ui-react';
-import '@aws-amplify/ui-react/styles.css';
+import logo from "./logo.svg";
+import { Amplify } from "aws-amplify";
+import { withAuthenticator } from "@aws-amplify/ui-react";
+import "@aws-amplify/ui-react/styles.css";
 
-import awsExports from './aws_exports';
-import { useState, useEffect, useRef } from 'react';
-
+import awsExports from "./aws_exports";
 Amplify.configure(awsExports);
 
-ChartJS.register(CategoryScale, LinearScale, LineElement, PointElement, Title, Tooltip, Legend);
+// Chart.jsにスケールやエレメントを登録する
+
+ChartJS.register(CategoryScale, LinearScale, BarElement, LineElement, PointElement, Title, Tooltip, Legend);
+
 
 function App({ signOut, user }) {
-    const [graphData, setGraphData] = useState({
-        labels: [],
+    /** グラフデータ */
+    const graphData = {
+        labels: [
+            ['2019', 'Jan'],
+            ['2019', 'Feb'],
+            ['2019', 'Mar'],
+            ['2019', 'Apr'],
+            ['2019', 'May'],
+            ['2019', 'June'],
+            ['2019', 'July'],
+            ['2019', 'Aug'],
+            ['2019', 'Sep'],
+            ['2019', 'Oct'],
+            ['2019', 'Nov'],
+            ['2019', 'Dec'],
+        ],
         datasets: [
             {
-                label: 'Indoor Temperature (°C)',
-                data: [],
-                borderColor: 'rgba(75, 192, 192, 1)',
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                borderWidth: 1,
+                data: [5.6, 7.2, 10.6, 13.6, 20, 21.8, 24.1, 28.4, 25.1, 19.4, 13.1, 8.5],
+                backgroundColor: 'rgba(30, 144, 255, 0.2)', // 塗りつぶしの色
+                borderColor: 'rgba(30, 144, 255, 1)', // 線の色
+                borderWidth: 2, // 線の太さ
+                label: '(mm)',
             },
-            {
-                label: 'Outdoor Temperature (°C)',
-                data: [],
-                borderColor: 'rgba(255, 99, 132, 1)',
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderWidth: 1,
-            },
-            // 他のデータセットを追加できます
         ],
-    });
-
-    const fetchData = useRef();
-
-    fetchData.current = async () => {
-        try {
-            const data = await Storage.get('pub/myhome', { download: true });
-            const jsonData = await data.Body.text();
-            const parsedData = JSON.parse(jsonData);
-
-            // タイムスタンプを作成
-            const timestamp = `${parsedData.get_date} ${parsedData.get_time}`;
-
-            setGraphData((prevData) => {
-                // 新しいデータポイントを追加
-                const newLabels = [...prevData.labels, timestamp];
-                const newIndoorData = [...prevData.datasets[0].data, parsedData.temp_in];
-                const newOutdoorData = [...prevData.datasets[1].data, parsedData.temp_out];
-
-                // 24時間分を超えたら古いデータを削除
-                if (newLabels.length > 1440) {
-                    newLabels.shift();
-                    newIndoorData.shift();
-                    newOutdoorData.shift();
-                }
-
-                return {
-                    ...prevData,
-                    labels: newLabels,
-                    datasets: [
-                        { ...prevData.datasets[0], data: newIndoorData },
-                        { ...prevData.datasets[1], data: newOutdoorData },
-                    ],
-                };
-            });
-        } catch (error) {
-            console.error('Error fetching data from S3:', error);
-        }
     };
-
-    useEffect(() => {
-        // 1分ごとにデータを取得する
-        const intervalId = setInterval(fetchData.current, 60000);
-
-        // コンポーネントがアンマウントされたときにインターバルをクリアする
-        return () => clearInterval(intervalId);
-    }, []);
 
     return (
         <div className="App">
             <header className="App-header">
+
                 {user ? (
                     <>
                         <h3>Welcome: {user.username}</h3>
                         <button onClick={signOut}>Sign out</button>
                         <div style={{
-                            height: '500px',
-                            width: '100%',
+                            height: '1000px',
+                            width: '80%',
                             margin: '0 auto',
                             display: 'flex',
                             justifyContent: 'center',

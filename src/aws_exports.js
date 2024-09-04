@@ -22,7 +22,7 @@ const awsmobile = {
     "aws_cognito_verification_mechanisms": [
         "EMAIL"
     ],
-    "aws_user_files_s3_bucket": "stream-temp-test",
+    "aws_user_files_s3_bucket": "tempstreams393fe7-dev",
     "aws_user_files_s3_bucket_region": "us-east-1"
 };
 
