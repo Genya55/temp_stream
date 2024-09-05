@@ -70,7 +70,7 @@ function App({ signOut, user }) {
         backgroundColor: "rgba(30, 144, 255, 0.2)", // �h��Ԃ��̐F
         borderColor: "rgba(30, 144, 255, 1)", // ���̐F
         borderWidth: 2, // ���̑���
-        label: "(mm)",
+        label: "(C)",
       },
     ],
   };
